@@ -9,7 +9,7 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-    <title lang="ru">All Users</title>
+    <title lang="ru">New Users</title>
 </head>
 <body>
 <div class="container">
@@ -17,18 +17,20 @@
 </div>
 <br>
 <div class="container">
-    <form th:method="POST" th:action="@{/new_user}" th:object="${empty_user}">
+    <form th:method="POST" th:action="@{/admin/new_user}" th:object="${empty_user}">
         <div>
             <table class="table table-striped">
                 <tr>
                     <th><input type="text" th:field="*{name}" id="name" placeholder="Name"/></th>
                     <th><input type="text" th:field="*{age}" id="age" placeholder="Age"/></th>
+                    <th><input type="text" th:field="*{password}" id="password" placeholder="Password"/></th>
                     <th><input type="submit" value="Создать"/></th>
-                    <th><input type="button" onclick="window.location.href = 'http://localhost:8080/users';" value="Назад"/></input></th>
+                    <th><input type="button" onclick="window.location.href = 'http://localhost:8080/admin/users';" value="Назад"/></input></th>
                 </tr>
             </table>
         </div>
     </form>
+    <button onclick="window.location.href = 'http://localhost:8080/logout';">Выйти</button>
 </div>
 </body>
 </html>

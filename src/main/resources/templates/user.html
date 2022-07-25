@@ -9,12 +9,11 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-    <title lang="ru">All Users</title>
+    <title lang="ru">User</title>
 </head>
 <body>
 <div class="container">
-    <h3>Пользователи</h3>
-    <button onclick="window.location.href = 'http://localhost:8080/admin/new';">Добавить пользователя</button>
+    <h3>Пользователь</h3>
 </div>
 <div class="container">
     <table class="table table-striped">
@@ -30,17 +29,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
             <td th:text="${user.getId()}">id</td>
             <td th:text="${user.getName()}">name</td>
             <td th:text="${user.getAge()}">age</td>
             <td th:text="${user.getPassword()}">password</td>
             <td th:text="${user.getRoles()}">roles</td>
-            <td><a class="btn btn-success" th:href="@{update/{id}(id=${user.getId()})}">edit</a></td>
-            <td><a class="btn btn-success" th:href="@{make-admin/{id}(id=${user.getId()})}">admin</a></td>
-            <td><a class="btn btn-success" th:href="@{make-user/{id}(id=${user.getId()})}">user</a></td>
-            <td><a class="btn btn-warning" th:href="@{delete/{id}(id=${user.getId()})}">delete</a></td>
-        </tr>
         </tbody>
     </table>
     <button onclick="window.location.href = 'http://localhost:8080/logout';">Выйти</button>

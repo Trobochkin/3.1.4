@@ -1,10 +1,10 @@
 package SpringBoot311.repository;
 
-import SpringBoot311.model.User;
+import SpringBoot311.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByName(String name);
+public interface RoleRepository extends JpaRepository<Role, Long> {
+    Role findByName(String name);
 }

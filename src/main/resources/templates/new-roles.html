@@ -9,24 +9,21 @@
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
-  <title lang="ru">All Users</title>
+  <title lang="ru">New role</title>
 </head>
 <body>
 <div class="container">
-  <h3>Изменить пользователя</h3>
+  <h3>Добавить роль</h3>
 </div>
 <br>
 <div class="container">
-  <form th:method="POST" th:action="@{/admin/update_execute}" th:object="${process_user}">
+  <form th:method="POST" th:action="@{/roles/new_role}" th:object="${empty_role}">
     <div>
       <table class="table table-striped">
         <tr>
-          <th><input type="text" th:field="*{id}" id="id" placeholder="Id"/></th>
           <th><input type="text" th:field="*{name}" id="name" placeholder="Name"/></th>
-          <th><input type="text" th:field="*{age}" id="age" placeholder="Age"/></th>
-          <th><input type="text" th:field="*{password}" id="password" placeholder="Password"/></th>
-          <th><input type="submit" value="Изменить"/></th>
-          <th><input type="button" onclick="window.location.href = 'http://localhost:8080/admin/users';" value="Назад"/></input></th>
+          <th><input type="submit" value="Создать"/></th>
+          <th><input type="button" onclick="window.location.href = 'http://localhost:8080/roles/';" value="Назад"/></input></th>
         </tr>
       </table>
     </div>
