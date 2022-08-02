@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,6 +53,7 @@ public class UserService implements UserDetailsService {
     public void userAddRole(Long id, String roleName) {
         User user = findById(id);
         Collection<Role> roles = user.getRoles();
+        if (roles == null) {roles = new ArrayList<>();}
         Role role = roleRepository.findByName(roleName);
         if (role == null) {
             role = new Role(roleName);
@@ -60,6 +62,16 @@ public class UserService implements UserDetailsService {
         roles.add(role);
         user.setRoles(roles);
         userRepository.save(user);
+    }
+
+    public Collection<Role> addRoll(String roleName){
+        Collection<Role> roles = new ArrayList<>();
+        for (Role role : roleRepository.findAll()) {
+            if (roleName.contains(role.getName())) {
+                roles.add(role);
+            }
+        }
+        return roles;
     }
 
     @Override

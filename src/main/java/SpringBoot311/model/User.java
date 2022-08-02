@@ -3,7 +3,9 @@ package SpringBoot311.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -14,8 +16,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
+    private String lastName;
     private int age;
 
+    private String mail;
     private String password;
 
     @ManyToMany()
@@ -27,10 +32,28 @@ public class User {
     public User() {
     }
 
-    public User(String name, int age, String password) {
+    public User(String name, String lastName, int age, String mail, String password) {
         this.name = name;
+        this.lastName = lastName;
         this.age = age;
+        this.mail = mail;
         this.password = password;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public Collection<Role> getRoles() {
@@ -71,6 +94,12 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getRolesToString() {
+        return roles.stream().map(r -> r.getName().split("_")).flatMap(Arrays::stream).distinct()
+                .filter(s -> s.equals("ROLE") == false).collect(Collectors.toList())
+                .toString().replaceAll("\\[|\\]|,", "");
     }
 
     @Override
