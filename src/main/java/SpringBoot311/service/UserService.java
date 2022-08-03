@@ -77,12 +77,13 @@ public class UserService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = findByName(name);
+        User user = userRepository.findByName(name);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", name));
         }
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
-                mapRoleToAuthorities(user.getRoles()));
+        return user;
+        //return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
+        //       mapRoleToAuthorities(user.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Collection<Role> roles) {
