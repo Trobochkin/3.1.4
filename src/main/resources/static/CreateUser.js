@@ -43,6 +43,6 @@ addForm.addEventListener('submit', e => {
         })
     }).then(()=> getUsers())
         .then(() => addForm.reset())
-
+    currentRoles = []
     return show('showUsers','addUser')
 })

@@ -75,4 +75,5 @@ editModalForm.addEventListener('submit', e => {
     }).then(()=> getUsers())
     $("#editModal").modal("hide");
     editModalForm.reset();
+    currentRoles = []
 })
