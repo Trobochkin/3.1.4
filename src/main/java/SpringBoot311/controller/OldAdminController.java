@@ -13,9 +13,9 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
-@RequestMapping("/admin")
+@RequestMapping("/test")
 @Controller
-public class AdminController {
+public class OldAdminController {
 
     private final UserService userService;
     private final RoleService roleService;
@@ -23,7 +23,7 @@ public class AdminController {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
+    public OldAdminController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
@@ -52,7 +52,9 @@ public class AdminController {
 
     @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") User user, @RequestParam(value = "role") String role) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (user.getPassword().equals((userService.findByName(user.getName())).getPassword()) == false) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         System.out.println(role);
         user.setRoles(userService.addRoll(role));
         userService.saveUser(user);
