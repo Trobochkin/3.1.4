@@ -21,7 +21,7 @@ addForm.addEventListener('submit', e => {
         if (rolesName[0] === 'ROLE_ADMIN') {
             currentRoles.push(roles[0])
         } else {
-            currentRoles.push(roles[0])
+            currentRoles.push(roles[1])
         }
     } else {
         currentRoles = roles
